@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: raw
+    database: dbt_db
+    schema: public
+    tables:
+      - name: orders
+      - name: customers
+
+models:
+  - name: orders_summary
+    tests:
+      - unique:
+          column_name: order_date
+      - not_null:
+          column_name: order_date
+      - relationships:
+          to: ref('customers')
+          field: customer_name
