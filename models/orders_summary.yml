@@ -10,11 +10,12 @@ sources:
 
 models:
   - name: orders_summary
-    tests:
-      - unique:
-          column_name: order_date
-      - not_null:
-          column_name: order_date
-      - relationships:
-          to: ref('customers')
-          field: customer_name
+    colums:
+      - name: order_date
+        description: "The date the order was placed"
+        tests:
+          - unique:
+          - not_null:
+          - relationships:
+              to: ref('customers')
+              field: customer_name
