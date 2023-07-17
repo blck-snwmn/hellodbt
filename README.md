@@ -1,3 +1,5 @@
+dbt sample
+
 ## Run
 ```bash
 dbt run
