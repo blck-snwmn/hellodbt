@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: order_histories_summary
+    description: "A summary of order histories"
+    columns:
+      - name: customer_name
+        description: "The name of the customer"
+        tests:
+          - not_null
+          - relationships:
+              to: source('raw', 'customers')
+              field: name
+      - name: product_name
+        description: "The name of the product"
+        tests:
+          - not_null
+          - relationships:
+              to: source('raw', 'orders')
+              field: product
+      - name: status
+        description: "The name of the product"
+        tests:
+          - not_null
+          - accepted_values:
+              # values:  # NG test
+              #   - shipped
+              #   - cancelled
+              #   - returned
+              values: # OK test
+                - order_accepted
+                - paid
+                - ordered
+                - shipped
+                - delivered

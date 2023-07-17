@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: raw
+    database: dbt_db
+    schema: public
+    tables:
+      - name: orders
+      - name: customers
+      - name: order_histories

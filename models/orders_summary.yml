@@ -1,21 +1,13 @@
 version: 2
 
-sources:
-  - name: raw
-    database: dbt_db
-    schema: public
-    tables:
-      - name: orders
-      - name: customers
-
 models:
   - name: orders_summary
-    colums:
-      - name: order_date
-        description: "The date the order was placed"
+    description: "A summary of orders"
+    columns:
+      - name: customer_name
+        description: "The name of the customer"
         tests:
-          - unique:
-          - not_null:
+          - not_null
           - relationships:
-              to: ref('customers')
-              field: customer_name
+              to: source('raw', 'customers')
+              field: name
